@@ -33,8 +33,6 @@ class App extends Component {
       subjects: [],
       library: [],
       currentSub: '',
-      temp: [],
-
     }
   }
 
@@ -64,42 +62,42 @@ class App extends Component {
     const body = await resp.data;
 
     if (resp.status !== 200) throw Error(body.message);
-
     return body;
   }
 
   getSubjects = async () => {
     const resp = await axios('http://api-biblio.officebureau.ca/wp-json/wp/v2/subject');
-
     const body = await resp.data;
 
     if (resp.status !== 200) throw Error(body.message);
-
     return body;
   }
 
   getSingleSubject = async (subjectId) => {
     const resp = await axios(`http://api-biblio.officebureau.ca/wp-json/wp/v2/posts?_embed&subject=${subjectId}`);
-
     const body = await resp.data;
 
     if (resp.status !== 200) throw Error(body.message);
-
     return body;
   }
 
   addToLibrary(key) {
     const { books, library } = {...this.state}
-
-    //check if book is already in library;
+    // check if book is already in library;
     // returns -1 if not in library
-    const bookInLibrary = library.indexOf(books[key]);
+    const bookId = books[key]['id'];
 
-    if (bookInLibrary < 0 ) {
+    const bookExistsInLibrary = Object
+      .keys(library)
+      .map(key => {
+         if (library[key]['id'] == bookId) return true;
+      })
+
+    if (bookExistsInLibrary.includes(true)) {
+      this.setState({ libraryErr: true });
+    } else {
       library.push(books[key]);
       this.setState({ library });
-    } else {
-      this.setState({ libraryErr: true });
     }
   }
 
@@ -110,7 +108,7 @@ class App extends Component {
     const filteredLibrary = Object
       .keys(library)
       .filter(key => {
-        if (library[key].id !== postId) return library[key];
+        if (library[key]['id'] !== postId) return library[key];
       })
       .map(key => library[key]);
 
