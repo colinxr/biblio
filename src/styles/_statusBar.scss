@@ -1,0 +1,21 @@
+.alert {
+  border-radius: 5px;
+  height: 35px;
+  margin: 0 auto;
+  padding: 5px;
+  position: relative;
+  text-align: center;
+  top: 5px;
+  width: 80%;
+
+  &--error {
+    background-color: red;
+    border: 1px solid black;
+    color: black;
+  }
+
+  span { line-height: 15pt; }
+  .clear {
+    float: right;
+  }
+}

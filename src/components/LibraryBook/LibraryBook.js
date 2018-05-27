@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import './LibraryBook.css';
-
 class LibraryBook extends Component {
   constructor() {
     super ();

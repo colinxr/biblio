@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import './Book.css';
 import Rating from '../Rating/Rating';
 
 class Book extends Component {
@@ -61,8 +60,8 @@ class Book extends Component {
 }
 
 Book.propTypes = {
-  postInfo: PropTypes.object.isRequied,
-  index: PropTypes.number.isRequired,
+  postInfo: PropTypes.object.isRequired,
+  index: PropTypes.string.isRequired,
   addBook: PropTypes.func.isRequired,
 }
 

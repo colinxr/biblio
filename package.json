@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "node-sass": "^4.9.0",
     "normalize.css": "^8.0.0",
     "prop-types": "^15.6.1",
     "react": "^16.4.0",
@@ -15,6 +16,12 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "dev": "concurrently --kill-others --raw \"npm run sass:watch\" \"npm run start\"",
+    "sass": "node-sass --source-map true ./src/styles/main.scss -o ./src/styles/css/",
+    "sass:watch": "node-sass --watch --source-map true ./src/styles/ -o ./src/styles/css/"
+  },
+  "devDependencies": {
+    "concurrently": "^3.5.1"
   }
 }

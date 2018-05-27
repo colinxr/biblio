@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import './Rating.css';
-
 class Rating extends Component {
   renderStar(key) {
     return(<i className="fa fa-star" aria-hidden="true" key={key}></i>);
@@ -32,7 +30,7 @@ class Rating extends Component {
 }
 
 Rating.propTypes = {
-  totalStars: PropTypes.number.isRequired,
+  totalStars: PropTypes.string,
 }
 
 export default Rating;

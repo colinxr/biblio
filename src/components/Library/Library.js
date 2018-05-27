@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import './Library.css';
 import LibraryBook from '../LibraryBook/LibraryBook';
 
 class Library extends Component {
@@ -9,7 +8,6 @@ class Library extends Component {
     super ();
 
     this.renderEmpty = this.renderEmpty.bind(this);
-    this.renderLibraryBook = this.renderLibraryBook.bind(this);
 
     this.state = {
       loading: true,
@@ -17,7 +15,7 @@ class Library extends Component {
   }
 
   componentDidMount() {
-    const { library } = {...this.props};
+    // const { library } = {...this.props};
 
     this.setState({
       laoding: false,
@@ -36,19 +34,10 @@ class Library extends Component {
     )
   }
 
-  renderLibraryBook(key) {
-    const { library } = {...this.props};
-    const book = library[key];
-
-    return (
-      <div key={key}><h3>library book</h3></div>
-    )
-  }
-
   render() {
     const { library, removeBook } = {...this.props};
 
-    if (library == undefined || !library.length) {
+    if (library === undefined || !library.length) {
       return (
         <div className="app__library">
           {this.renderEmpty()}
@@ -61,9 +50,9 @@ class Library extends Component {
             Object
               .keys(library)
               .map(key => <LibraryBook postInfo={library[key]}
-              key={key}
-              index={key}
-              removeBook={removeBook} />)
+                key={key}
+                index={key}
+                removeBook={removeBook} />)
           }
         </div>
       )

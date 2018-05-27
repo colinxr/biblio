@@ -1,10 +1,8 @@
 .app__library {
   background-color: #eaeaea;
+  border-left: 1px solid #6a6c6b;
   height: 100%;
   width: 100%;
-  border-left: 1px solid #6a6c6b;
-}
 
-.app__library__error {
-  padding: 15px;
+  &__error { padding: 45px; }
 }

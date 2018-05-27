@@ -1,0 +1,18 @@
+.library-book {
+  background-color: #fafafa;
+  border-bottom: 1px solid #999;
+  padding: 10px;
+
+  .img-wrapper {
+    float: left;
+    height: 75px;
+    margin-right: 5px;
+    width: 25%;
+  }
+
+  img {
+    height: 100%;
+    margin: 0 auto;
+    width: auto;
+  }
+}

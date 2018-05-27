@@ -4,10 +4,10 @@ import axios from 'axios';
 import Header from './components/Header/Header';
 import BookLoading from './components/BookLoading/BookLoading';
 import StatusBar from './components/StatusBar/StatusBar';
+import SubjectList from './components/SubjectList/SubjectList';
 import BookList from './components/BookList/BookList';
 import Library from './components/Library/Library';
 
-import './App.css';
 import 'normalize.css';
 
 class App extends Component {
@@ -15,7 +15,12 @@ class App extends Component {
     super();
 
     this.getBooks = this.getBooks.bind(this);
+    this.getSubjects = this.getSubjects.bind(this);
+    this.getSingleSubject = this.getSingleSubject.bind(this);
+    this.handleFilter = this.handleFilter.bind(this);
+    this.handleClearFilter = this.handleClearFilter.bind(this);
     this.renderLoading = this.renderLoading.bind(this);
+    this.renderSubjectName = this.renderSubjectName.bind(this);
     this.addToLibrary = this.addToLibrary.bind(this);
     this.removeFromLibrary = this.removeFromLibrary.bind(this);
     this.clearStatusBar = this.clearStatusBar.bind(this);
@@ -25,7 +30,10 @@ class App extends Component {
       libraryErr: false,
       libraryErrMsg: 'Looks\'s like you\'ve already added that book to the Reading List',
       books: {},
+      subjects: [],
       library: [],
+      currentSub: '',
+
     }
   }
 
@@ -38,23 +46,47 @@ class App extends Component {
         });
       })
       .catch(err => console.error(err));
+
+      this.getSubjects()
+        .then(resp => this.setState({ subjects: resp }) )
+        .catch(err => console.error(err));
   }
 
   getBooks = async () => {
-    const response = await axios('http://api-biblio.officebureau.ca/wp-json/wp/v2/posts?_embed');
-    const body = await response.data;
+    const resp = await axios('http://api-biblio.officebureau.ca/wp-json/wp/v2/posts?_embed');
+    const body = await resp.data;
 
-    if (response.status !== 200) throw Error(body.message);
+    if (resp.status !== 200) throw Error(body.message);
+
+    return body;
+  }
+
+  getSubjects = async () => {
+    const resp = await axios('http://api-biblio.officebureau.ca/wp-json/wp/v2/subject');
+
+    const body = await resp.data;
+
+    if (resp.status !== 200) throw Error(body.message);
+
+    return body;
+  }
+
+  getSingleSubject = async (subjectId) => {
+    const resp = await axios(`http://api-biblio.officebureau.ca/wp-json/wp/v2/posts?_embed&subject=${subjectId}`);
+
+    const body = await resp.data;
+
+    if (resp.status !== 200) throw Error(body.message);
 
     return body;
   }
 
   addToLibrary(key) {
     const { books, library } = {...this.state}
+
     //check if book is already in library;
     // returns -1 if not in library
     const bookInLibrary = library.indexOf(books[key]);
-
 
     if (bookInLibrary < 0 ) {
       library[key] = books[key];
@@ -78,8 +110,41 @@ class App extends Component {
     this.setState({ library: filteredLibrary });
   }
 
+  handleFilter(key) {
+    const {subjects} = {...this.state};
+    const subjectId = subjects[key]['id'];
+    const subjectName = subjects[key]['name'];
+
+    this.setState({ loading: true });
+
+    this.getSingleSubject(subjectId)
+      .then(resp => {
+        this.setState({
+          loading: false,
+          books: resp,
+          currentSub: subjectName,
+        });
+      })
+      .catch(err => console.err(err));
+  }
+
+  handleClearFilter() {
+    this.setState({
+      loading: true,
+      currentSub: '',
+    });
+
+    this.getBooks()
+      .then(resp => {
+        this.setState({
+          loading: false,
+          books: resp,
+        });
+      })
+      .catch(err => console.err(err));
+  }
+
   clearStatusBar() {
-    console.log('test');
     this.setState({ libraryErr: false });
   }
 
@@ -95,24 +160,51 @@ class App extends Component {
       </div>
     )
   }
+
+  renderSubjectName() {
+    const { currentSub } = {...this.state};
+    return (
+      <h2>{currentSub}</h2>
+    );
+  }
+
+  renderMain() {
+    const { books, subjects, currentSub } = {...this.state};
+    return(
+      <div>
+        <SubjectList subjects={subjects} filterSubject={this.handleFilter}
+        clearFilter={this.handleClearFilter} />
+        {
+          !currentSub ? '' : this.renderSubjectName()
+        }
+        <BookList books={books} addBook={this.addToLibrary} />
+      </div>
+    )
+  }
+
   render() {
-    const { books, library, libraryErrMsg } = {...this.state};
+    const { books, library, loading, libraryErr, libraryErrMsg } = {...this.state};
     return (
       <div className="app">
         <Header name="Biblio"/>
-        {this.state.libraryErr ? <StatusBar errMsg={libraryErrMsg} dismiss={this.clearStatusBar} /> : ''}
         <div className="app__container">
-          <div className="post-container">
+          <div className="main">
             {
-              this.state.loading ?
-              this.renderLoading() :
-              <BookList books={books} addBook={this.addToLibrary} />
+              libraryErr ?
+              <StatusBar errMsg={libraryErrMsg} dismiss={this.clearStatusBar} /> :
+              ''
             }
+
+            {
+              loading ?
+              this.renderLoading() :
+              this.renderMain()
+            }
+          </div>
             <Library
               library={library}
               removeBook={this.removeFromLibrary}
             />
-          </div>
         </div>
       </div>
     );

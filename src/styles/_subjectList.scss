@@ -1,0 +1,16 @@
+.subject-list {
+  list-style-type: none;
+  padding-left: 0;
+  font-size: 10pt;
+  text-align: center;
+
+  li {
+    display: inline;
+    & + li { margin-left: 15px; }
+  }
+
+  &__option {
+    color: #6a6c6b;
+    cursor: pointer;
+   }
+}

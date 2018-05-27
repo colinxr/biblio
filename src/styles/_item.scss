@@ -1,0 +1,31 @@
+.item {
+  display: inline-block;
+  font-size: 10pt;
+  margin-bottom: 25px;
+
+  & + .item { margin-left: 3%; }
+
+  &__img-wrapper { text-align: center; }
+
+  &__img {
+    height: 200px;
+    margin: 0 auto;
+  }
+
+  &__add__btn {
+    cursor: pointer;
+    margin-top: 10px;
+  }
+
+}
+
+
+// .item__meta,
+// .item__add__btn {
+//   font-size: 10pt;
+//   text-align: left;
+// }
+
+
+//
+// .item
