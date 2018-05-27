@@ -15,7 +15,7 @@ class StatusBar extends Component {
 
 StatusBar.propTypes = {
   errMsg: PropTypes.string.isRequired,
-  dissmiss: PropTypes.func.isRequired,
+  dismiss: PropTypes.func.isRequired,
 }
 
 export default StatusBar;

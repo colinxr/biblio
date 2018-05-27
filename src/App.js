@@ -33,6 +33,7 @@ class App extends Component {
       subjects: [],
       library: [],
       currentSub: '',
+      temp: [],
 
     }
   }
@@ -47,9 +48,15 @@ class App extends Component {
       })
       .catch(err => console.error(err));
 
-      this.getSubjects()
-        .then(resp => this.setState({ subjects: resp }) )
-        .catch(err => console.error(err));
+    this.getSubjects()
+      .then(resp => this.setState({ subjects: resp }) )
+      .catch(err => console.error(err));
+
+    const localStorageRef = localStorage.getItem('localLibrary');
+
+    if (localStorageRef) {
+      this.setState({ library: JSON.parse(localStorageRef) });
+    }
   }
 
   getBooks = async () => {
@@ -89,7 +96,7 @@ class App extends Component {
     const bookInLibrary = library.indexOf(books[key]);
 
     if (bookInLibrary < 0 ) {
-      library[key] = books[key];
+      library.push(books[key]);
       this.setState({ library });
     } else {
       this.setState({ libraryErr: true });

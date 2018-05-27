@@ -23,7 +23,7 @@ header {
 .app__container {
   position: relative;
   display: grid;
-  grid-template-columns: 1fr 25%;
+  grid-template-columns: 1fr 375px;
   width: 100%; }
 
 .main {
@@ -93,16 +93,26 @@ i {
 .library-book {
   background-color: #fafafa;
   border-bottom: 1px solid #999;
-  padding: 10px; }
+  padding: 0 10px 20px;
+  position: relative; }
   .library-book .img-wrapper {
-    float: left;
-    height: 75px;
+    border-radius: 50px;
+    display: inline-block;
+    height: 50px;
+    overflow: hidden;
     margin-right: 5px;
-    width: 25%; }
+    width: 50px; }
   .library-book img {
-    height: 100%;
+    height: auto;
     margin: 0 auto;
-    width: auto; }
+    width: 100%; }
+  .library-book__meta {
+    display: inline-block; }
+  .library-book .close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer; }
 
 .item {
   display: inline-block;

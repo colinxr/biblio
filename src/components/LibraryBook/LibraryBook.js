@@ -1,19 +1,28 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { renderTerms } from '../../helpers.js';
 
 class LibraryBook extends Component {
   constructor() {
     super ();
 
     this.state = {
-      isbn: ''
+      goodReadsUrl: ''
     }
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    const { postInfo } = {...this.props};
+
+    this.setState({
+      goodReadsUrl: `https://www.goodreads.com/book/isbn/${postInfo.acf.isbn}`
+    })
+  }
 
   render() {
-    const { postInfo,index, removeBook } = {...this.props};
+    const { postInfo, index, removeBook } = {...this.props};
+    const bookAuthors = postInfo._embedded['wp:term'][2];
+    const goodReadsUrl = {...this.state};
 
     const img = postInfo._embedded['wp:featuredmedia'][0];
 
@@ -23,8 +32,9 @@ class LibraryBook extends Component {
           <img src={img.media_details.sizes.thumbnail.source_url} alt=""/>
         </div>
         <div className="library-book__meta">
-          <p>{postInfo.title.rendered}</p>
-          <a href="#">View on good reads</a>
+          <h4><strong>{postInfo.title.rendered}</strong></h4>
+          <p>By: {renderTerms(bookAuthors, ' & ')}</p>
+          <a href={this.state.goodReadsUrl} target="_blank">View on Goodreads</a>
         </div>
         <span className="close" onClick={() => removeBook(index)}>X</span>
       </div>
@@ -33,7 +43,7 @@ class LibraryBook extends Component {
 }
 
 LibraryBook.propTypes = {
-  postInfo: PropTypes.object.isRequied,
+  postInfo: PropTypes.object.isRequired,
   removeBook: PropTypes.func.isRequired,
 }
 

@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { renderTerms } from '../../helpers.js';
 
 import Rating from '../Rating/Rating';
 
 class Book extends Component {
   constructor() {
     super();
-    this.renderTerms = this.renderTerms.bind(this);
+    // this.renderTerms = this.renderTerms.bind(this);
 
     this.state = {
       isbn: '',
@@ -19,13 +20,6 @@ class Book extends Component {
     this.setState({
       isbn: postInfo.acf.isbn,
     });
-  }
-
-  renderTerms(taxonomy, seperator) {
-    return Object
-      .keys(taxonomy)
-      .map(key => taxonomy[key]['name'])
-      .join(seperator);
   }
 
   render() {
@@ -43,8 +37,8 @@ class Book extends Component {
         </div>
         <div className="item__meta">
           <h2>{postInfo.title.rendered}</h2>
-          <p>By: {this.renderTerms(bookAuthors, ' & ')}</p>
-          <p>{this.renderTerms(postTags, ', ')}</p>
+          <p>By: {renderTerms(bookAuthors, ' & ')}</p>
+          <p>{renderTerms(postTags, ', ')}</p>
           <p><strong>ISBN: </strong> {postInfo.acf.isbn}</p>
         </div>
         <Rating totalStars={rating} />

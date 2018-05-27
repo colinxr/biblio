@@ -11,25 +11,19 @@ class Library extends Component {
 
     this.state = {
       loading: true,
+      library: [],
     }
   }
 
-  componentDidMount() {
-    // const { library } = {...this.props};
-
-    this.setState({
-      laoding: false,
-    })
-  }
-
   componentWillUpdate(nextProps) {
+    localStorage.setItem('localLibrary', JSON.stringify(nextProps.library));
   }
 
   renderEmpty() {
     return (
       <div className="app__library__error">
         <h3>Nothing to see here.</h3>
-        <h3>Add something to your Reading List</h3>
+        <h4>Add something to your Reading List</h4>
       </div>
     )
   }
