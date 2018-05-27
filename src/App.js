@@ -99,7 +99,7 @@ class App extends Component {
     const { books, library, libraryErrMsg } = {...this.state};
     return (
       <div className="app">
-        <Header name="BookIt"/>
+        <Header name="Biblio"/>
         {this.state.libraryErr ? <StatusBar errMsg={libraryErrMsg} dismiss={this.clearStatusBar} /> : ''}
         <div className="app__container">
           <div className="post-container">

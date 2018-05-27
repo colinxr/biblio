@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+
 import './StatusBar.css';
 
 class StatusBar extends Component {
@@ -11,6 +13,11 @@ class StatusBar extends Component {
       </div>
     );
   }
+}
+
+StatusBar.propTypes = {
+  errMsg: PropTypes.string.isRequired,
+  dissmiss: PropTypes.func.isRequired,
 }
 
 export default StatusBar;

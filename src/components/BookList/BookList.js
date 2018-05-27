@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import PropTypes from 'prop-types';
 
 import './BookList.css';
 import Book from '../Book/Book';
@@ -18,6 +18,11 @@ class BookList extends Component {
       </div>
     )
   }
+}
+
+BookList.propTypes = {
+  books: PropTypes.object.isRequired,
+  addBook: PropTypes.func.isRequired,
 }
 
 

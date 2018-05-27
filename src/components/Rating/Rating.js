@@ -1,16 +1,9 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
 
 import './Rating.css';
-// import FullStar from './FullStar';
-// import HalfStar from './HalfStar';
 
 class Rating extends Component {
-  constructor() {
-    super();
-    this.renderStar = this.renderStar.bind(this);
-  }
-
   renderStar(key) {
     return(<i className="fa fa-star" aria-hidden="true" key={key}></i>);
   }
@@ -36,6 +29,10 @@ class Rating extends Component {
 
     return (<div>{stars}</div>);
   }
+}
+
+Rating.propTypes = {
+  totalStars: PropTypes.number.isRequired,
 }
 
 export default Rating;

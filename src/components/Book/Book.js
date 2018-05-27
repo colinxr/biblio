@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import axios from 'axios';
+import PropTypes from 'prop-types';
 
 import './Book.css';
 import Rating from '../Rating/Rating';
@@ -11,7 +11,6 @@ class Book extends Component {
 
     this.state = {
       isbn: '',
-      rating: '',
     }
   }
 
@@ -20,7 +19,6 @@ class Book extends Component {
 
     this.setState({
       isbn: postInfo.acf.isbn,
-      // rating: postInfo._embedded['wp:term'][6][0] ? postInfo._embedded['wp:term'][6][0]['name'] : null,
     });
   }
 
@@ -33,6 +31,7 @@ class Book extends Component {
 
   render() {
     const { postInfo, index, addBook } = {...this.props};
+
     const img = postInfo._embedded['wp:featuredmedia'][0];
     const bookAuthors = postInfo._embedded['wp:term'][2];
     const postTags = postInfo._embedded['wp:term'][3];
@@ -59,6 +58,12 @@ class Book extends Component {
       </div>
     );
   }
+}
+
+Book.propTypes = {
+  postInfo: PropTypes.object.isRequied,
+  index: PropTypes.number.isRequired,
+  addBook: PropTypes.func.isRequired,
 }
 
 export default Book;

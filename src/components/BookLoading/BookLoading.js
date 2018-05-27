@@ -2,7 +2,7 @@ import React from 'react';
 
 import './BookLoading.css';
 
-function BookLoading(props) {
+const BookLoading = () => {
   return (
     <div className="loading-entry">
       <div className="loading-entry__img">

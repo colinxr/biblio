@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import './Library.css';
 import LibraryBook from '../LibraryBook/LibraryBook';
@@ -70,6 +71,9 @@ class Library extends Component {
   }
 }
 
+Library.propTypes = {
+  library: PropTypes.array.isRequired,
+  removeBook: PropTypes.func.isRequired,
+}
 
-export default Library
-;
+export default Library;

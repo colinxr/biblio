@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import './LibraryBook.css';
 
@@ -31,6 +32,11 @@ class LibraryBook extends Component {
       </div>
     )
   }
+}
+
+LibraryBook.propTypes = {
+  postInfo: PropTypes.object.isRequied,
+  removeBook: PropTypes.func.isRequired,
 }
 
 export default LibraryBook;
