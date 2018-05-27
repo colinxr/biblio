@@ -1,0 +1,14 @@
+.alert {
+  width: 80%;
+  text-align: center;
+  top: 5px;
+  margin: 0 auto;
+  left: 50%;
+  right: 50%;
+}
+
+.alert-error {
+  background-color: red;
+  border: 1px solid black;
+  color: black;
+}
