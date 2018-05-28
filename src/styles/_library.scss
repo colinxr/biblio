@@ -1,8 +1,11 @@
 .app__library {
   background-color: #eaeaea;
-  border-left: 1px solid #6a6c6b;
+  border-left: 1px solid $link-color;
   height: 100%;
   width: 100%;
 
-  &__error { padding: 45px; }
+  &__error {
+    padding: 35px;
+    text-align: center;
+   }
 }

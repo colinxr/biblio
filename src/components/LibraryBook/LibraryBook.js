@@ -32,8 +32,8 @@ class LibraryBook extends Component {
           <img src={img.media_details.sizes.thumbnail.source_url} alt=""/>
         </div>
         <div className="library-book__meta">
-          <h4><strong>{postInfo.title.rendered}</strong></h4>
-          <p>By: {renderTerms(bookAuthors, ' & ')}</p>
+          <p><strong>{postInfo.title.rendered}</strong></p>
+          <p>{renderTerms(bookAuthors, ' & ')}</p>
           <a href={this.state.goodReadsUrl} target="_blank">View on Goodreads</a>
         </div>
         <span className="close" onClick={() => removeBook(index)}>X</span>

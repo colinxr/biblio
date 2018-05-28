@@ -1,3 +1,6 @@
+@import 'variables';
+@import 'media-queries';
+
 * { box-sizing: border-box; }
 
 body {
@@ -14,37 +17,64 @@ h5 {
   font-family: 'Francois One', Helvetica, sans-serif;
 }
 
+a {
+  color: $link-color;
+  text-decoration: none;
+  border-bottom: 1px solid $link-color;
+  transition: color .15s;
+
+  &:hover { color: darken($link-color, 20%); }
+}
+
 header {
-  background-color: #4a4a4a;
+  background-color: $black;
   color: white;
   padding: 15px 25px;
   text-align: left;
   width: 100%;
+
+  h1 {
+    font-size: 18pt;
+    margin: 0;
+  }
 }
 
 .app__container {
   position: relative;
   display: grid;
-  grid-template-columns: 1fr 375px;
+  grid-template-columns: 67% 1fr;
   width: 100%;
+
+  @include tablet {
+    // grid-template-columns: 75% 1fr;
+  }
+
+  @include desktop {
+    grid-template-columns: 1fr 350px;
+  }
+
  }
 
 .main {
   position: relative;
 }
 
-h1 { margin: 0; }
-
 .items-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 50px;
+  grid-template-columns: 1fr;
+  grid-gap: 10px;
   margin: 0 auto;
-  padding: 75px;
+  padding: 25px;
   width: 100%;
-}
 
-i { color: gold; }
+  @include tablet {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @include desktop {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
 
 @import 'loadingEntry';
 @import 'library';

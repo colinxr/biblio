@@ -1,6 +1,6 @@
 .library-book {
   background-color: #fafafa;
-  border-bottom: 1px solid #999;
+  border-bottom: 1px solid darken(#eaeaea, 20%);
   padding: 0 10px 20px;
   position: relative;
 
@@ -9,7 +9,8 @@
     display: inline-block;
     height: 50px;
     overflow: hidden;
-    margin-right: 5px;
+    margin: 15px 7px 0 0;
+    vertical-align: top;
     width: 50px;
   }
 
@@ -21,12 +22,28 @@
 
   &__meta {
     display: inline-block;
+    font-size: 10pt;
+    padding-top: 13px;
+
+    h4 {
+      font-size: 12pt;
+      letter-spacing: .5px;
+      margin-bottom: 0;
+    }
+
+    p { margin: 5px 0 7px; }
+
   }
 
   .close {
-    position: absolute;
-    top: 5px;
-    right: 5px;
+    color: $link-color;
     cursor: pointer;
+    font-weight: 600;
+    opacity: .45;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+
+    &:hover { color: darken($link-color, 20%); }
   }
 }

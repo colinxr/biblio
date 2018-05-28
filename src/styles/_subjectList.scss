@@ -1,11 +1,19 @@
 .subject-list {
-  list-style-type: none;
-  padding-left: 0;
   font-size: 10pt;
+  list-style-type: none;
+  margin: 25px auto 0;
+  padding-left: 0;
   text-align: center;
+  width: 90%;
+
+  @include tablet {
+    width: 80%;
+  }
 
   li {
     display: inline;
+    word-break: none;
+    
     & + li { margin-left: 15px; }
   }
 
