@@ -11,10 +11,22 @@
   }
 
   li {
-    display: inline;
-    word-break: none;
-    
-    & + li { margin-left: 15px; }
+    display: block;
+		width: 50%;
+		margin: 0 auto;
+
+		@include tablet {
+			width: auto;
+			display: inline;
+			& + li { margin-left: 5px; }
+		}
+
+		@include desktop {
+			display: inline;
+			& + li { margin-left: 15px; }
+		}
+
+    & + li { margin-top: 6px; }
   }
 
   &__option {

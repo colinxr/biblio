@@ -1,4 +1,6 @@
 .loading-entry {
+	margin-bottom: 25px;
+	
   > * {
     height: 25px;
     margin-bottom: 15px;
@@ -13,7 +15,7 @@
             animation: LoadingShimmer 2s ease infinite;
   }
 
-  &:first-child {
+  &__img {
     height: 167px;
     width: 100%;
   }

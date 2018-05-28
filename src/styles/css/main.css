@@ -35,20 +35,22 @@ header {
   position: relative;
   display: grid;
   grid-template-columns: 67% 1fr;
+  height: 100vh;
   width: 100%; }
   @media (min-width: 1024px) {
     .app__container {
       grid-template-columns: 1fr 350px; } }
 
 .main {
-  position: relative; }
+  position: relative;
+  padding: 40px; }
 
 .items-container {
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 10px;
   margin: 0 auto;
-  padding: 25px;
+  padding: 25px 0;
   width: 100%; }
   @media (min-width: 768px) and (max-width: 1023px) {
     .items-container {
@@ -57,20 +59,21 @@ header {
     .items-container {
       grid-template-columns: 1fr 1fr 1fr; } }
 
-.loading-entry > * {
-  height: 25px;
-  margin-bottom: 15px;
-  background: -webkit-linear-gradient(right, #f6f7f8, #d9dee2);
-  background: -o-linear-gradient(right, #f6f7f8, #d9dee2);
-  background: linear-gradient(to left, #f6f7f8, #d9dee2);
-  background-size: 200% 200%;
-  -webkit-animation: LoadingShimmer 2s ease infinite;
-  -moz-animation: LoadingShimmer 2s ease infinite;
-  animation: LoadingShimmer 2s ease infinite; }
-
-.loading-entry:first-child {
-  height: 167px;
-  width: 100%; }
+.loading-entry {
+  margin-bottom: 25px; }
+  .loading-entry > * {
+    height: 25px;
+    margin-bottom: 15px;
+    background: -webkit-linear-gradient(right, #f6f7f8, #d9dee2);
+    background: -o-linear-gradient(right, #f6f7f8, #d9dee2);
+    background: linear-gradient(to left, #f6f7f8, #d9dee2);
+    background-size: 200% 200%;
+    -webkit-animation: LoadingShimmer 2s ease infinite;
+    -moz-animation: LoadingShimmer 2s ease infinite;
+    animation: LoadingShimmer 2s ease infinite; }
+  .loading-entry__img {
+    height: 167px;
+    width: 100%; }
 
 @-webkit-keyframes LoadingShimmer {
   0% {
@@ -212,10 +215,22 @@ i {
     .subject-list {
       width: 80%; } }
   .subject-list li {
-    display: inline;
-    word-break: none; }
+    display: block;
+    width: 50%;
+    margin: 0 auto; }
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .subject-list li {
+        width: auto;
+        display: inline; }
+        .subject-list li + li {
+          margin-left: 5px; } }
+    @media (min-width: 1024px) {
+      .subject-list li {
+        display: inline; }
+        .subject-list li + li {
+          margin-left: 15px; } }
     .subject-list li + li {
-      margin-left: 15px; }
+      margin-top: 6px; }
   .subject-list__option {
     color: #6a6c6b;
     cursor: pointer; }

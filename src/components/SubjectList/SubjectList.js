@@ -2,24 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class SubjectList extends Component {
-  constructor() {
-    super();
-    this.renderList = this.renderList.bind(this);
-  }
-
-  renderList() {
-    const { subjects, filterSubject } = {...this.props};
-
-    return subjects.map((subject, key) => <li
-        className="subject-list__option"
-        key={key}
-        index={subject.id}
-        onClick={() => filterSubject()} >
-        {subject.name}
-      </li>
-  );
-  }
-
   render() {
     const { subjects, filterSubject, clearFilter } = {...this.props};
 
