@@ -1,13 +1,13 @@
 {
   "name": "bookit",
   "version": "0.1.0",
-  "proxy": "http://api-biblio.officebureau.ca/wp-json/wp/v2/",
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
     "node-sass": "^4.9.0",
     "normalize.css": "^8.0.0",
     "prop-types": "^15.6.1",
+    "proxify-url": "1.0.1",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-scripts": "1.1.4"
